@@ -1,0 +1,28 @@
+test: stage-/actuator/bus-refresh-security
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: '{cipher}AQB73AlL/dcwBWP9RZOvy/wLmRDzdefxIMUUOmf3OsmoGHL70zBl2UM/1AVM1+BUl3Yxhkw65OBv8nuB4OHze/VtrtnZa+kaRug3wk7AMLSWFwDEgMFT8yy52WNLSLUg7GPXVAfiKgoTP5zjDSL6lQzGJm4Mp9Mu3J8WQadR6KYsgxEQI4MXmcFdPvs+i6/YkZW8PVy1LaS37rKqgF9aI/YPcg52jZHtj+92GvsR9bQ5JC7inUzUtUFtle9q3e0fBvMZIWk+qyzxmFQdRKOaocJYi9jVSyBW/6/JVFCHkPJDpLA64KeGrsBmOr5CvxNozdxfvxz8jo8Werr6s/Q+yvmzKW1VfkSwzsNZSLLO3SI6CphvC7mb2QyITGjBUfQflnw='
+    virtual-host: /
+    listener:
+      simple:
+        concurrency: 5
+        max-concurrency: 10
+        transaction-size: 5
+        prefetch: 10
+        acknowledge-mode: auto
+        retry:
+          max-attempts: 3
+server:
+  port: 8082
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+feign:
+  hystrix:
+    enabled: true
