@@ -17,6 +17,9 @@ spring:
           max-attempts: 3
 server:
   port: 8082
+  tomcat:
+    max-threads: 500
+    min-spare-threads: 50
 eureka:
   client:
     service-url:
